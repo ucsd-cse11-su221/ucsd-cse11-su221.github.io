@@ -7,4 +7,4 @@ https://cseweb.ucsd.edu/classes/sp17/cse11-a/lecture2.html
 
 Reminder to check the course web site for other deadlines:
 
-https://ucsd-cse11-su121.github.io/
+https://ucsd-cse11-su221.github.io/
