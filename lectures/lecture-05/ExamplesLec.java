@@ -17,5 +17,4 @@ class ExamplesLec {
   Point p1 = new Point(8, 16);
   Point p2 = new Point(3, 4);
 
-
 }
