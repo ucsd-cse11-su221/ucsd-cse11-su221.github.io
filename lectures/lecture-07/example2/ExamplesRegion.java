@@ -17,7 +17,11 @@ class Point {
   }
 }
 
-class RectRegion {
+interface Region {
+  boolean contains(Point p);
+}
+
+class RectRegion implements Region {
   Point lowerLeft;
   Point upperRight;
   RectRegion(Point lowerLeft, Point upperRight) {
@@ -34,7 +38,7 @@ class RectRegion {
   }
 }
 
-class CircRegion {
+class CircRegion implements Region {
   Point center;
   int radius;
   CircRegion(Point center, int radius) {
@@ -49,6 +53,29 @@ class CircRegion {
     return this.center.distance(p) < this.radius;    
   }
 }
+
+class UnionRegion implements Region {
+  Region r1, r2;
+  UnionRegion(Region r1, Region r2) {
+    this.r1 = r1;
+    this.r2 = r2;
+  }
+  public boolean contains(Point toCheck) {
+    return this.r1.contains(toCheck) || this.r2.contains(toCheck);
+  }
+}
+
+class IntersectRegion implements Region {
+  Region r1, r2;
+  IntersectRegion(Region r1, Region r2) {
+    this.r1 = r1;
+    this.r2 = r2;
+  }
+  public boolean contains(Point toCheck) {
+    return this.r1.contains(toCheck) && this.r2.contains(toCheck);
+  }
+}
+
 
 class ExamplesRegion {
   Region r1 = new RectRegion(new Point(30, 40), new Point(100, 200));
@@ -82,6 +109,21 @@ class ExamplesRegion {
            t.checkExpect(this.c2.contains(this.circleTest2), true);
   }
 
+  Region u1 = new UnionRegion(this.c1, this.r1);
+
+  boolean testContainsRegion(Tester t) {
+    //These first two we know should work because they were in the original
+    //tests for the shapes composed into Region u1
+    t.checkExpect(this.u1.contains(this.circleTest1), true);
+    t.checkExpect(this.u1.contains(this.toTest1), true);
+
+    //to the left of the rectangle and the circle
+    t.checkExpect(this.u1.contains(circleTest2), false);
+
+    //to the right and above
+    t.checkExpect(this.u1.contains(new Point(1000, 1000)), false);
+
+    return true;
+  }
+
 }
-
-

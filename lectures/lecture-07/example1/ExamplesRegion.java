@@ -16,10 +16,10 @@ class Point {
     return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
   }
   double xDistance(Point other) {
-    return Math.abs(this.x = other.x);
+    return Math.abs(this.x - other.x);
   }
   double yDistance(Point other) {
-    return Math.abs(this.y = other.y);
+    return Math.abs(this.y - other.y);
   }
 }
 
@@ -33,9 +33,20 @@ class UnionRegion {
     this.r1 = r1;
     this.r2 = r2;
   }
-  public boolean contains(Point p) {
-    return this.r1.contains(p) || this.r2.contains(p);
+
+  public boolean contains(Point toCheck) {
+    return this.r1.contains(toCheck) || this.r2.contains(toCheck);
   }
+
+/*
+  public boolean contains(Point toCheck) {
+    return false || this.r2.contains(toCheck);
+  }
+  public boolean contains(Point toCheck) {
+    return true;
+  }
+*/
+
 }
 
 class SquareRegion implements Region {
@@ -49,6 +60,22 @@ class SquareRegion implements Region {
     return this.center.xDistance(toCheck) <= (this.sideLength/ 2) &&
            this.center.yDistance(toCheck) <= (this.sideLength / 2);
   }
+/*
+  public boolean contains(Point toCheck) {
+    return 8 <= (this.sideLength/ 2) &&
+           this.center.yDistance(toCheck) <= (this.sideLength / 2);
+  }
+  public boolean contains(Point toCheck) {
+    return 8 <= 4 &&
+           this.center.yDistance(toCheck) <= (this.sideLength / 2);
+  }
+  public boolean contains(Point toCheck) {
+    return false &&
+           this.center.yDistance(toCheck) <= (this.sideLength / 2);
+  }  
+*/
+
+
 }
 
 class CircleRegion implements Region {
@@ -61,6 +88,17 @@ class CircleRegion implements Region {
   public boolean contains(Point toCheck) {
     return this.center.distance(toCheck) <= this.radius;
   }
+/*
+  public boolean contains(Point toCheck) {
+    return 3 <= this.radius;
+  }
+  public boolean contains(Point toCheck) {
+    return 3 <= 4;
+  }
+  public boolean contains(Point toCheck) {
+    return true;
+  }
+*/
 }
 
 class ExamplesRegion {

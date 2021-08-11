@@ -70,6 +70,32 @@ class IntersectRegion implements Region {
   }
 }
 
+//Represent all points in region1 that aren't in region2
+class SubtractRegion implements Region {
+  Region r1;
+  Region r2;
+  SubtractRegion(Region r1, Region r2) {
+    this.r1 = r1;
+    this.r2 = r2;
+  }
+
+  /*
+  public boolean contains(Point p) {
+    if (this.r1.contains(p) && r2.contains(p)) {
+      return false;
+    }
+    else {
+      return this.r1.contains(p);
+    }
+  }
+*/
+
+  public boolean contains(Point p) {
+    return this.r1.contains(p) && !this.r2.contains(p);
+  }
+}
+
+
 class SquareRegion implements Region {
   Point center;
   double sideLength;
@@ -102,4 +128,11 @@ class ExamplesRegion {
   Region circ1 = new CircleRegion(new Point(10, 5), 4.0);
   Region sq = new SquareRegion(new Point(10, 1), 8.);
   Region ir = new IntersectRegion(this.circ1, this.sq);
+
+
+  Region circA = new CircleRegion(new Point(6, 5), 3);
+  Region circB = new CircleRegion(new Point(12, 5), 3);
+  Region circC = new CircleRegion(new Point(18, 5), 3);
+
+  //Region all3Circle = ...;
 }
