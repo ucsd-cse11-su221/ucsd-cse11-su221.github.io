@@ -113,8 +113,15 @@ class CircleRegion extends ARegion {
 class ExamplesRegion {
   Region circ1 = new CircleRegion(new Point(10, 5), 4.0);
   Region sq = new SquareRegion(new Point(10, 1), 8.);
-  Region ur = this.circ1.add(this.sq);
 
   //Region ir = new IntersectRegion(this.circ1, this.sq);
-  Region ir = this.circ1.overlap(this.sq);
+  //Region ir = this.circ1.overlap(this.sq);  //same as line above
+
+  Region ur = this.circ1.add(this.sq);
+
+  // To _find_ add method for this.circ1.add:
+  //    - First look in CircleRegion
+  //    - Not found! So look in ARegion, because CircleRegion extends it
+
+  //Region aRegion = new ARegion(); //abstract class - cannot be instantiated
 }
