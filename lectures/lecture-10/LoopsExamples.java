@@ -1,0 +1,5 @@
+import tester.*;
+
+class LoopsExamples {
+
+}
