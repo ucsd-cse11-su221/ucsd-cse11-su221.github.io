@@ -2,11 +2,9 @@ import tester.*;
 
 class LoopsExamples {
 
-    //Returns the sum of the lengths of the strings instrs
+    //Returns the sum of the lengths of the strings in strs
     //for ANY length array that is given to us
     int sumOfLengths(String[] strs) {
-
-        //We need a way to do the sum for all the elements, no matter how many there are
         int sum = 0;
 
         for (String s: strs) {
@@ -14,24 +12,18 @@ class LoopsExamples {
         }
 
         return sum;
-
-        // if (strs.length == 3) {
-        //     return strs[0].length() + strs[1].length() + strs[2].length();
-        // }
-        // else {
-        //     return strs[0].length() + strs[1].length() + strs[2].length() + strs[3].length();
-        // }
     }
 
-    String[] fruit = { "apple", "banana", "cucumber" };     //19
-    String[] letters = { "b", "e", "a", "r" };              //4
+    String[] fruit = { "apple", "banana", "cucumber" };
+    String[] letters = { "b", "e", "a", "r" };
 
     boolean testSumOfLengths(Tester t) {
         return t.checkExpect(this.sumOfLengths(fruit), 19) &&
                t.checkExpect(this.sumOfLengths(letters), 4);
     }
 
-    //Write a method that takes an array of int and returns 
+
+    //Write a method product that takes an array of int and returns
     //the product (multiplication) of those numbers
     int product(int[] nums) {
         int total = 1;
@@ -43,16 +35,17 @@ class LoopsExamples {
         return total;
     }
 
-    int[] nums1 = { 2, 4, 6 };          //48
-    int[] nums2 = { 5, 3, 1, 2, 1 };    //30
+    int[] nums1 = { 2, 4, 6 };          // 48
+    int[] nums2 = { 5, 3, 1, 2, 1 };    // 30
 
     boolean testProduct(Tester t) {
         return t.checkExpect(this.product(nums1), 48) &&
                t.checkExpect(this.product(nums2), 30);
     }
 
-    //average: take an array of double and return a double
-    //representing the average (mean)
+
+    //average: take an array of doubles and return a double representing 
+    //the average (mean)
     double average(double[] doubles) {
         double total = 0.0;
         //int count = 0;
@@ -62,16 +55,53 @@ class LoopsExamples {
             //count = count + 1;
         }
 
+        if (doubles.length == 0) {
+            return 0.0;
+        }
+
         //return total / count;
         return total / doubles.length;
     }
 
-    double[] ds1 = { 2.0, 4.0, 1.0 };       //  7 / 3
-    double[] ds2 = { 5.0, 1.0, 3.0, 6.0 };  // 15 / 4
+    double[] ds1 = { 2.0, 4.0, 1.0 };           //  7/3
+    double[] ds2 = { 5.0, 1.0, 3.0, 6.0 };      // 15/4
+    double[] ds3 = { };
 
     boolean testAverage(Tester t) {
         return t.checkExpect(this.average(ds1), 7.0 / 3.0) &&
                t.checkExpect(this.average(ds2), 15.0 / 4.0) &&
                t.checkExpect(this.average(ds3), 0.0);
     }
+
+    //average: take an array of doubles and return a double representing 
+    //the average (mean)
+    double averageNonNegatives(double[] doubles) {
+        double total = 0.0;
+        int count = 0;
+
+        for (double d: doubles) {
+            if (d >= 0) {
+                total = total + d;
+                count = count + 1;
+            }
+        }
+
+        if (count == 0) {
+            return 0.0;
+        }
+
+        return total / count;
+    }
+
+    double[] ds4 = { 5, 6, -5, -6 };        //11 / 2
+    double[] ds5 = { -5, -6, -7, -8 };      //0
+
+    boolean testAverageNonNegative(Tester t) {
+        return t.checkExpect(this.averageNonNegatives(ds4), 11.0 / 2.0) && 
+               t.checkExpect(this.averageNonNegatives(ds3), 0.0) &&
+               t.checkExpect(this.averageNonNegatives(ds5), 0.0);
+    }
+
+
+
 }
