@@ -1,4 +1,3 @@
-import jdk.javadoc.internal.tool.Start;
 import tester.*;
 
 class ArrayUpdateCreation {
@@ -32,5 +31,7 @@ class ArrayUpdateCreation {
     //              0   1   2   3   4   5   6   7   8   9
     // look like { 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 }
     int[] range2 = range(0, 5);
+    //             0  1  2  3  4
     // look like { 0, 1, 2, 3, 4 }
+    int[] range3 = range(13, 17);
 }
