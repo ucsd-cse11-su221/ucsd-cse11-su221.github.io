@@ -35,6 +35,11 @@ abstract class AComboRegion extends ARegion {
   Region r1;
   Region r2;
   AComboRegion(Region r1, Region r2) {
+
+    if (r1 == null || r2 == null) { 
+      throw new IllegalArgumentException("arguments must be non-null");
+    }
+
     //if no super is provided, Java calls no arg super() automatically
     //super();
     this.r1 = r1;
@@ -76,6 +81,9 @@ class SquareRegion extends ARegion {
   Point center;
   double sideLength;
   SquareRegion(Point center, double sideLength) {
+    if (center == null) { 
+      throw new IllegalArgumentException("center must be non-null");
+    }
     this.center = center;
     this.sideLength = sideLength;
   }
@@ -89,6 +97,9 @@ class CircleRegion extends ARegion {
   Point center;
   double radius;
   CircleRegion(Point center, double radius) {
+    if (center == null) { 
+      throw new IllegalArgumentException("center must be non-null");
+    }
     this.center = center;
     this.radius = radius;
   }
@@ -97,8 +108,11 @@ class CircleRegion extends ARegion {
   }
 }
 
-class ExamplesRegion {
+class ExamplesARegion {
   Region circ1 = new CircleRegion(new Point(10, 5), 4.0);
   Region sq = new SquareRegion(new Point(10, 1), 8.);
   Region ur = this.circ1.add(this.sq);
+
+  Region unknown;
+  Region ur2 = this.circ1.add(unknown);
 }

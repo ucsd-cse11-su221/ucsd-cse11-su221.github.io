@@ -1,6 +1,33 @@
 import java.util.ArrayList;
 
+class TextTweet {
+    String username;
+    String contents;
+    int likes;
+    TextTweet(String username, String contents, int likes) {
+        // likes should not be negative
+        // contents should be fewer than 280 characters and at least 1
+        // username shouldn't be empty
+        if (likes < 0) {
+            throw new IllegalArgumentException("likes must be non-negative");
+        }
+        if (username.length() == 0) {
+            throw new IllegalArgumentException("username must contains characters");
+        }
+        if (contents.length() <= 0 || contents.length() > 280) {
+            throw new IllegalArgumentException("contents must be 1 - 280 characters");
+        }
+
+        this.username = username;
+        this.contents = contents;
+        this.likes = likes;
+    }
+}
+
+
 public class ExceptionsExamples {
+
+    Exception e = new IllegalArgumentException("this exception isn't being thrown");
 
     /**
      * ASSUME that elements is nonempty
@@ -36,6 +63,13 @@ public class ExceptionsExamples {
         System.out.println(max(al));
 
         ArrayList<Integer> al2 = new ArrayList<>();
-        System.out.println(max(al2));
+        //System.out.println(max(al2));
+
+
+        Exception e1 = new IllegalArgumentException("this is not being thrown from main");
+        System.out.println(e1);
+
+        TextTweet t = new TextTweet("joe", "hello!", -1);
+
     }
 }
