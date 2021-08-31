@@ -15,18 +15,53 @@ class Point {
     boolean same(Point other) {
         return (this.x == other.x) && (this.y == other.y);
     }
-}
 
+    // This is an OVERLOAD equals method, the one in Object class
+    // has a different signaute: boolean equals(Object ohter)
+    boolean equals(Point other) {
+        //System.out.println("Calling our equals method now!");
+        return (this.x == other.x) && (this.y == other.y);
+    }
+
+    // Implementatino of the equals method that is defined in the Object class
+    // This method OVERRIDEs the equals method in the Object class.
+    public boolean equals(Object other) {
+        System.out.println("Calling our equals method now!");
+
+        if (other == null) {
+            return false;
+        }
+
+        if (!(other instanceof Point)) {
+            return false;
+        }
+
+        // other must be a Point here
+        Point p = (Point) other;
+        return (this.x == p.x) && (this.y == p.y);
+    }
+}
 
 class Equality {
 
     Point p1 = new Point(4, 5);
     Point p2 = new Point(4, 5); 
 
+    Point[] points1 = { p1, p2 };
+    Point[] points2 = { p2, p1 };
+
     boolean p1AndP2EqualsByOperator = (p1 == p2);
     boolean p1AndP2Equals = p1.equals(p2);           //Calling the .equals() method on built-in Object class
     boolean p1AndP2SameByMethod = p1.same(p2);
 
+    boolean pointsEqualsByArrayEquals = Arrays.equals(points1, points2);
+
+
+
+
+
+
+/*
     int[] numsA = { 5, 1, 7 };
     int[] numsB = { 5, 1, 7 };
 
@@ -45,7 +80,7 @@ class Equality {
     boolean strsEqualByArrayEqual = Arrays.equals(strs1, strs2);
 
     boolean sAndS2EqualByOperator = (s == s2);
-
+*/
 
 
 
